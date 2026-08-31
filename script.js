@@ -4,7 +4,6 @@
   const header = document.getElementById('siteHeader');
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
-  const progressBar = document.getElementById('progressBar');
   const backToTop = document.getElementById('backToTop');
   const yearEl = document.getElementById('year');
   const contactForm = document.getElementById('contactForm');
@@ -38,14 +37,10 @@
     });
   }
 
-  // Scroll-driven header state + progress bar
+  // Scroll-driven header state
   const onScroll = () => {
     const scrollY = window.scrollY || document.documentElement.scrollTop;
     header.classList.toggle('scrolled', scrollY > 20);
-
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
-    if (progressBar) progressBar.style.width = progress + '%';
 
     if (backToTop) backToTop.style.opacity = scrollY > 400 ? '1' : '0.4';
   };

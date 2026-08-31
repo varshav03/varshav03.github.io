@@ -106,17 +106,6 @@ ul{ margin: 0; padding: 0; list-style: none; }
   padding: 0 32px;
 }
 
-/* ===== Progress bar ===== */
-.progress-bar{
-  position: fixed;
-  top: 0; left: 0;
-  height: 3px;
-  width: 0%;
-  background: var(--accent);
-  z-index: 1000;
-  transition: width 0.1s linear;
-}
-
 /* ===== Header ===== */
 .site-header{
   position: fixed;

@@ -8,7 +8,7 @@ Single-page marketing & content portfolio. Plain HTML/CSS/JS, no build step.
 | --- | --- |
 | `index.html` | Main portfolio page |
 | `styles.css` | Portfolio styles |
-| `script.js` | Nav, scroll progress, reveal animations, contact mailto |
+| `script.js` | Nav, scroll progress, reveal animations, theme toggle, contact form |
 | `resume.html` | Résumé page, matched to the site palette; "Print / Save as PDF" for a clean one-pager |
 | `resume.css` | Résumé styles + print stylesheet |
 | `assets/` | Downloadable résumé PDF and other assets |
@@ -42,5 +42,5 @@ The `.nojekyll` file is included so GitHub Pages serves every file as-is.
 
 ## Notes
 
-- The contact form has no backend — it opens the visitor's email client with the message pre-filled (`mailto:`).
+- The contact form posts to [Web3Forms](https://web3forms.com) (no backend). The public `access_key` lives in `index.html`; submissions are emailed to the address registered with that key. If JS is off, the form still submits via a plain POST to Web3Forms.
 - Content (reveal animations) stays visible even if JavaScript is disabled.

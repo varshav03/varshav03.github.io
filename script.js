@@ -108,20 +108,59 @@
     sections.forEach((section) => navObserver.observe(section));
   }
 
-  // Contact form -> mailto handoff (static site, no backend)
+  // Contact form -> Web3Forms (static site, no backend). The <form> also has a
+  // plain action/method so it still works if this script fails to load.
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const defaultNote = formNote ? formNote.textContent : '';
+
+    const setNote = (text, state) => {
+      if (!formNote) return;
+      formNote.textContent = text;
+      formNote.classList.remove('is-success', 'is-error');
+      if (state) formNote.classList.add(state);
+    };
+
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const name = contactForm.name.value.trim();
-      const email = contactForm.email.value.trim();
-      const message = contactForm.message.value.trim();
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+      }
+      setNote('Sending your message…');
 
-      const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
-      const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
-      window.location.href = `mailto:varsharamana03@gmail.com?subject=${subject}&body=${body}`;
+      try {
+        const res = await fetch(contactForm.action, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(contactForm)
+        });
+        const data = await res.json().catch(() => ({}));
 
-      if (formNote) {
-        formNote.textContent = 'Opening your email client…';
+        if (res.ok && data.success) {
+          contactForm.reset();
+          setNote('Thanks — your message is on its way. Varsha will be in touch.', 'is-success');
+        } else {
+          setNote(
+            (data && data.message) ||
+              'Something went wrong. Please email varsharamana03@gmail.com directly.',
+            'is-error'
+          );
+        }
+      } catch (err) {
+        setNote('Network error. Please email varsharamana03@gmail.com directly.', 'is-error');
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send Message';
+        }
+        if (formNote) {
+          window.setTimeout(() => {
+            if (!formNote.classList.contains('is-error')) {
+              setNote(defaultNote);
+            }
+          }, 8000);
+        }
       }
     });
   }

@@ -10,6 +10,7 @@
   --line: #d9cbb4;
   --accent: #a9714f;
   --accent-light: #cf9d72;
+  --danger: #b4462f;
   --panel-a: #4a3626;
   --panel-b: #3a2b20;
   --panel-ink: #f5efe4;
@@ -36,6 +37,7 @@
     --line: #3a2e22;
     --accent: #d59a72;
     --accent-light: #e6b088;
+    --danger: #e8785f;
     --panel-a: #2c2018;
     --panel-b: #1d1610;
     --panel-ink: #efe4d0;
@@ -56,6 +58,7 @@
   --line: #3a2e22;
   --accent: #d59a72;
   --accent-light: #e6b088;
+  --danger: #e8785f;
   --panel-a: #2c2018;
   --panel-b: #1d1610;
   --panel-ink: #efe4d0;
@@ -649,6 +652,8 @@ ul{ margin: 0; padding: 0; list-style: none; }
   color: var(--brown-400);
   margin: 0;
 }
+.form-note.is-success{ color: var(--accent); font-weight: 500; }
+.form-note.is-error{ color: var(--danger); font-weight: 500; }
 
 /* ===== Footer ===== */
 .site-footer{

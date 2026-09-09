@@ -386,10 +386,35 @@
 
 <script src="script.js"></script>
   <!-- Lovable Chatbot Embed -->
-<iframe 
-  src="https://exact-screenshot-magic-873.lovable.app" 
-  style="position: fixed; bottom: 20px; right: 20px; width: 380px; height: 600px; border: none; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); z-index: 9999;"
-  title="Varsha's Digital Twin">
-</iframe>
+<!-- Floating Chatbot Button & Frame -->
+<div id="chatbot-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
+  <!-- Chat Window (Hidden by default) -->
+  <iframe 
+    id="chatbot-iframe"
+    src="https://exact-screenshot-magic-873.lovable.app" 
+    style="display: none; width: 380px; height: 550px; border: none; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); margin-bottom: 12px;"
+    title="Varsha's Digital Twin">
+  </iframe>
+
+  <!-- Circular Toggle Button -->
+  <button 
+    onclick="toggleChatbot()" 
+    style="width: 60px; height: 60px; border-radius: 50%; background-color: #c86d51; color: white; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; float: right;">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+  </button>
+</div>
+
+<script>
+  function toggleChatbot() {
+    const iframe = document.getElementById('chatbot-iframe');
+    if (iframe.style.display === 'none' || iframe.style.display === '') {
+      iframe.style.display = 'block';
+    } else {
+      iframe.style.display = 'none';
+    }
+  }
+</script>
 </body>
 </html>
